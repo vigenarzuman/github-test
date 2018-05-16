@@ -14,6 +14,7 @@ class HomeController extends Controller
 
     public function search($slug)
     {
+        // dd($slug);
     	$users = GitHub::api('search')->users($slug);
 		return $users;
     }
