@@ -17,4 +17,10 @@ class HomeController extends Controller
     	$users = GitHub::api('search')->users($slug);
 		return $users;
     }
+
+    public function getFollower($slug)
+    {
+    	$followers = GitHub::api('user')->followers($slug);
+		return $followers;
+    }
 }
