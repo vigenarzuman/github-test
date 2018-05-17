@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function search($user, $page, $count)
     {
 		$headers = [
-			'Authorization' => 'token 98b971992f23b93944d365210f898a8b868605dc',
+			'Authorization' => 'token '.config('github.connections.main.token'),
 		];
 		$url = 'https://api.github.com/search/users?q='. $user .'&per_page='. $count .'&page='. $page;
     	$client = new \GuzzleHttp\Client();
@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
 		
 		$headers = [
-			'Authorization' => 'token 98b971992f23b93944d365210f898a8b868605dc',
+			'Authorization' => 'token '.config('github.connections.main.token'),
 		];
     	$url = 'https://api.github.com/users/'. $user .'/followers?per_page='. $count .'&page='. $page;
     	$client = new \GuzzleHttp\Client();

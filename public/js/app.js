@@ -55150,7 +55150,7 @@ var Suggestions = function (_Component) {
 										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 											'p',
 											{ className: 'login' },
-											'Count of follower: 0'
+											'Count of followers: 0'
 										)
 									),
 									_this3.state.followers_list.map(function (r, i) {

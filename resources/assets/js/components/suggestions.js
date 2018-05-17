@@ -67,7 +67,7 @@ class Suggestions extends Component {
 						<div>
 							{this.state.followers_list.length === 0 && (
 										<a className='info list-group-item' key={i} data-name={r.login} /* onClick={() => this.getFollowers(r.login)} */>
-											<p className='login'>Count of follower: 0</p>
+											<p className='login'>Count of followers: 0</p>
 										</a>
 							)}
 							{this.state.followers_list.map((r, i) => (
