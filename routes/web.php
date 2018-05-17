@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+Route::get('/user/{user}/{page}/{count}', 'HomeController@search');
+Route::get('/follower/{user}/{page}/{count}', 'HomeController@getFollower');

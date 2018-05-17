@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use GrahamCampbell\GitHub\Facades\GitHub;
 
 class HomeController extends Controller
 {
@@ -12,15 +11,21 @@ class HomeController extends Controller
     	return view('welcome');
     }
 
-    public function search($slug)
+    public function search($user, $page, $count)
     {
-    	$users = GitHub::api('search')->users($slug);
-		return $users;
+		$url = 'https://api.github.com/search/users?q='. $user .'&per_page='. $count .'&page='. $page;
+    	$client = new \GuzzleHttp\Client();
+	    $response = $client->request('GET', $url);
+	    $followers = $response->getBody()->getContents();
+		return $followers;
     }
 
-    public function getFollower($slug)
+    public function getFollower($user, $page, $count)
     {
-    	$followers = GitHub::api('user')->followers($slug);
+    	$url = 'https://api.github.com/users/'. $user .'/followers?per_page='. $count .'&page='. $page;
+    	$client = new \GuzzleHttp\Client();
+	    $response = $client->request('GET', $url);
+	    $followers = $response->getBody()->getContents();
 		return $followers;
     }
 }
