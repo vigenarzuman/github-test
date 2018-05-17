@@ -16,3 +16,17 @@ ul{
     padding: 10px;
     margin: 10px;
 }
+.info{
+    width: 250px;
+    cursor: pointer;
+}
+.form-group{
+    width: 250px;
+}
+.list-group{
+    /* float: left; */
+    position: relative;
+}
+.load-more{
+    margin-top: 15px; 
+}

@@ -9,47 +9,68 @@ class Search extends Component {
     constructor(props){
         super(props);
         this.state = {
-            query: '',
-            results: []
+            user: '',
+            results: [],
+            page: 1,
+            count: 20,
         }
         this.getInfo = this.getInfo.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.loadMore = this.loadMore.bind(this);
     }
 
     getInfo() {
-        axios.get(`api/user/${this.state.query}`)
+        this.getDataByPage(1);
+    }
+
+    getDataByPage(page){
+        axios.get(`/api/user/${this.state.user}/${this.state.page}/${this.state.count}`)
             .then(({ data }) => {
-                this.setState({
-                    results: data
-                })
+                let results = this.state.results;
+                // results = results.concat(data.items);
+                let newResultr = data.items;
+                if(page!==1){
+                    newResultr = [...results, ...data.items]
+                }
+                this.setState({ results: newResultr })
             })
     }
 
     handleInputChange () {
         this.setState({
-            query: this.search.value
+            user: this.search.value,
+            page: 1
         }, () => {
-            if(this.state.query.length > 4)
+            if(this.state.user.length > 4)
                 this.getInfo()
+        })
+    }
+    loadMore() {
+        this.setState({
+            page: ++this.state.page
+        }, () => {
+            this.getDataByPage(this.state.page)
         })
     }
 
     render() {
         return (
             <div>
-                <div class="form-group">
-                    <label for="usr">Search for login:</label>
-                    <input type="text" class="form-control" id="usr"
+                <div className="form-group">
+                    <label htmlFor="usr">Search for login:</label>
+                    <input type="text" className="form-control" id="usr"
                         placeholder="Search for..."
                         ref={input => this.search = input}
                         onChange={this.handleInputChange}
                     />
                 </div>
-                {this.state.query.length > 4 && (
-                    <Suggestions results={this.state.results} />
+                {this.state.user.length > 4 && (
+                    <Suggestions 
+                        results={this.state.results} 
+                        user = {this.state.user}
+                        loadMore = {this.loadMore}
+                    />
                 )}
-                
-                
             </div>
         )
     }

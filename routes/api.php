@@ -17,4 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/user/{slug}', 'HomeController@search');
+// Route::get('/user/{slug}', 'HomeController@search');
+Route::get('/user/{user}/{page}/{count}', 'HomeController@search');
+Route::get('/follower/{user}/{page}/{count}', 'HomeController@getFollower');
