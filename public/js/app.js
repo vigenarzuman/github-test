@@ -55071,8 +55071,6 @@ var Suggestions = function (_Component) {
 				_this2.setState({
 					followers_list: data,
 					login: login
-				}, function () {
-					console.log(_this2.state.followers_list);
 				});
 			});
 		}

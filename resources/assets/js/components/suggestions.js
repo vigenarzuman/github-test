@@ -21,8 +21,6 @@ class Suggestions extends Component {
 			this.setState({
 				followers_list: data,
 				login: login
-			}, () => {
-				console.log(this.state.followers_list);
 			})
 		})
 	}
