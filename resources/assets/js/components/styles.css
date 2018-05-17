@@ -1,0 +1,18 @@
+.user-avatar{
+    background-size: cover;
+    background-position: center center;
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+    float: left;
+}
+li{
+    list-style: none;
+}
+.login{
+    line-height: 35px;
+}
+ul{
+    padding: 10px;
+    margin: 10px;
+}
